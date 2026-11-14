@@ -1,0 +1,16 @@
+[
+  {
+    "username": "admin",
+    "full_name": "Quản Trị Viên",
+    "role": "admin",
+    "password_hash": "96e444a4fe4862ac35f005208e5009a1afa79515e54a6120e075940b875d3cc2",
+    "salt": "1b7238f4cb1fa9e2"
+  },
+  {
+    "username": "letan",
+    "full_name": "Nhân Viên Lễ Tân",
+    "role": "receptionist",
+    "password_hash": "b739e924c6e599ee802f7c291b43a7848db705d34e56ff1bc013dd0e399ff2b5",
+    "salt": "f36afd44828e7d52"
+  }
+]

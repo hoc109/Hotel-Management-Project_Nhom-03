@@ -1,0 +1,38 @@
+[
+  {
+    "guest_id": "G001",
+    "full_name": "Nguyễn Văn An",
+    "phone": "0901234567",
+    "id_card": "001090012345"
+  },
+  {
+    "guest_id": "G002",
+    "full_name": "Trần Thị Bình",
+    "phone": "0912345678",
+    "id_card": "079185001234"
+  },
+  {
+    "guest_id": "G003",
+    "full_name": "Lê Hoàng Cường",
+    "phone": "0987654321",
+    "id_card": ""
+  },
+  {
+    "guest_id": "G004",
+    "full_name": "Phạm Thị Dung",
+    "phone": "0934567890",
+    "id_card": "B1234567"
+  },
+  {
+    "guest_id": "G005",
+    "full_name": "Hoàng Minh Đức",
+    "phone": "0978123456",
+    "id_card": ""
+  },
+  {
+    "guest_id": "G006",
+    "full_name": "Võ Thị Hà",
+    "phone": "0965432109",
+    "id_card": ""
+  }
+]

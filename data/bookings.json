@@ -1,0 +1,216 @@
+[
+  {
+    "booking_id": "B001",
+    "guest_id": "G001",
+    "room_id": "R002",
+    "check_in": "2026-09-11",
+    "check_out": "2026-09-13",
+    "status": "checked_out",
+    "created_on": "2026-09-08",
+    "room_number": "102",
+    "room_type": "Tiêu chuẩn",
+    "room_cost": 1100000.0,
+    "discount_rate": 0.0,
+    "services": [],
+    "checked_in_on": "2026-09-11",
+    "checked_out_on": "2026-09-13"
+  },
+  {
+    "booking_id": "B002",
+    "guest_id": "G001",
+    "room_id": "R007",
+    "check_in": "2026-09-26",
+    "check_out": "2026-10-03",
+    "status": "checked_out",
+    "created_on": "2026-09-23",
+    "room_number": "301",
+    "room_type": "Suite",
+    "room_cost": 20100000.0,
+    "discount_rate": 0.1,
+    "services": [
+      {
+        "service_id": "S003",
+        "service_name": "Ăn sáng buffet",
+        "unit_price": 150000.0,
+        "quantity": 14,
+        "used_on": "2026-09-26"
+      },
+      {
+        "service_id": "S005",
+        "service_name": "Spa",
+        "unit_price": 400000.0,
+        "quantity": 2,
+        "used_on": "2026-09-29"
+      }
+    ],
+    "checked_in_on": "2026-09-26",
+    "checked_out_on": "2026-10-03"
+  },
+  {
+    "booking_id": "B003",
+    "guest_id": "G002",
+    "room_id": "R004",
+    "check_in": "2026-10-09",
+    "check_out": "2026-10-12",
+    "status": "checked_out",
+    "created_on": "2026-10-06",
+    "room_number": "201",
+    "room_type": "Cao cấp",
+    "room_cost": 4200000.0,
+    "discount_rate": 0.05,
+    "services": [
+      {
+        "service_id": "S004",
+        "service_name": "Đưa đón sân bay",
+        "unit_price": 300000.0,
+        "quantity": 1,
+        "used_on": "2026-10-09"
+      }
+    ],
+    "checked_in_on": "2026-10-09",
+    "checked_out_on": "2026-10-12"
+  },
+  {
+    "booking_id": "B004",
+    "guest_id": "G001",
+    "room_id": "R001",
+    "check_in": "2026-10-21",
+    "check_out": "2026-10-24",
+    "status": "checked_out",
+    "created_on": "2026-10-18",
+    "room_number": "101",
+    "room_type": "Tiêu chuẩn",
+    "room_cost": 1500000.0,
+    "discount_rate": 0.05,
+    "services": [
+      {
+        "service_id": "S002",
+        "service_name": "Giặt ủi",
+        "unit_price": 30000.0,
+        "quantity": 4,
+        "used_on": "2026-10-22"
+      }
+    ],
+    "checked_in_on": "2026-10-21",
+    "checked_out_on": "2026-10-24"
+  },
+  {
+    "booking_id": "B005",
+    "guest_id": "G002",
+    "room_id": "R005",
+    "check_in": "2026-10-29",
+    "check_out": "2026-11-03",
+    "status": "checked_out",
+    "created_on": "2026-10-26",
+    "room_number": "202",
+    "room_type": "Cao cấp",
+    "room_cost": 7500000.0,
+    "discount_rate": 0.05,
+    "services": [
+      {
+        "service_id": "S001",
+        "service_name": "Minibar",
+        "unit_price": 50000.0,
+        "quantity": 3,
+        "used_on": "2026-10-30"
+      },
+      {
+        "service_id": "S003",
+        "service_name": "Ăn sáng buffet",
+        "unit_price": 150000.0,
+        "quantity": 4,
+        "used_on": "2026-10-31"
+      }
+    ],
+    "checked_in_on": "2026-10-29",
+    "checked_out_on": "2026-11-03"
+  },
+  {
+    "booking_id": "B006",
+    "guest_id": "G003",
+    "room_id": "R003",
+    "check_in": "2026-11-09",
+    "check_out": "2026-11-12",
+    "status": "checked_in",
+    "created_on": "2026-11-06",
+    "room_number": "103",
+    "room_type": "Tiêu chuẩn",
+    "room_cost": 1800000.0,
+    "discount_rate": 0.05,
+    "services": [
+      {
+        "service_id": "S001",
+        "service_name": "Minibar",
+        "unit_price": 50000.0,
+        "quantity": 2,
+        "used_on": "2026-11-09"
+      }
+    ],
+    "checked_in_on": "2026-11-09",
+    "checked_out_on": null
+  },
+  {
+    "booking_id": "B007",
+    "guest_id": "G004",
+    "room_id": "R005",
+    "check_in": "2026-11-10",
+    "check_out": "2026-11-13",
+    "status": "booked",
+    "created_on": "2026-11-07",
+    "room_number": "202",
+    "room_type": "Cao cấp",
+    "room_cost": 4500000.0,
+    "discount_rate": 0.05,
+    "services": [],
+    "checked_in_on": null,
+    "checked_out_on": null
+  },
+  {
+    "booking_id": "B008",
+    "guest_id": "G001",
+    "room_id": "R008",
+    "check_in": "2026-11-15",
+    "check_out": "2026-11-18",
+    "status": "booked",
+    "created_on": "2026-11-07",
+    "room_number": "302",
+    "room_type": "Suite",
+    "room_cost": 10700000.0,
+    "discount_rate": 0.1,
+    "services": [],
+    "checked_in_on": null,
+    "checked_out_on": null
+  },
+  {
+    "booking_id": "B009",
+    "guest_id": "G006",
+    "room_id": "R001",
+    "check_in": "2026-11-12",
+    "check_out": "2026-11-14",
+    "status": "cancelled",
+    "created_on": "2026-11-07",
+    "room_number": "101",
+    "room_type": "Tiêu chuẩn",
+    "room_cost": 1000000.0,
+    "discount_rate": 0.0,
+    "services": [],
+    "checked_in_on": null,
+    "checked_out_on": null
+  },
+  {
+    "booking_id": "B010",
+    "guest_id": "G005",
+    "room_id": "R004",
+    "check_in": "2026-11-11",
+    "check_out": "2026-11-11",
+    "status": "booked",
+    "created_on": "2026-11-07",
+    "room_number": "201",
+    "room_type": "Cao cấp",
+    "room_cost": 1400000.0,
+    "discount_rate": 0.0,
+    "services": [],
+    "checked_in_on": null,
+    "checked_out_on": null
+  }
+]

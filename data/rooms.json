@@ -1,0 +1,68 @@
+[
+  {
+    "type": "standard",
+    "room_id": "R001",
+    "room_number": "101",
+    "price_per_night": 500000.0,
+    "status": "available",
+    "basic_service": "Wifi, nước suối"
+  },
+  {
+    "type": "standard",
+    "room_id": "R002",
+    "room_number": "102",
+    "price_per_night": 550000.0,
+    "status": "available",
+    "basic_service": "Wifi, nước suối, trà"
+  },
+  {
+    "type": "standard",
+    "room_id": "R003",
+    "room_number": "103",
+    "price_per_night": 600000.0,
+    "status": "occupied",
+    "basic_service": "Wifi, nước suối"
+  },
+  {
+    "type": "deluxe",
+    "room_id": "R004",
+    "room_number": "201",
+    "price_per_night": 1200000.0,
+    "status": "available",
+    "extra_service_fee": 200000.0
+  },
+  {
+    "type": "deluxe",
+    "room_id": "R005",
+    "room_number": "202",
+    "price_per_night": 1300000.0,
+    "status": "available",
+    "extra_service_fee": 200000.0
+  },
+  {
+    "type": "deluxe",
+    "room_id": "R006",
+    "room_number": "203",
+    "price_per_night": 1500000.0,
+    "status": "maintenance",
+    "extra_service_fee": 250000.0
+  },
+  {
+    "type": "suite",
+    "room_id": "R007",
+    "room_number": "301",
+    "price_per_night": 2500000.0,
+    "status": "available",
+    "extra_service_fee": 300000.0,
+    "butler_fee": 500000.0
+  },
+  {
+    "type": "suite",
+    "room_id": "R008",
+    "room_number": "302",
+    "price_per_night": 3000000.0,
+    "status": "available",
+    "extra_service_fee": 400000.0,
+    "butler_fee": 500000.0
+  }
+]
