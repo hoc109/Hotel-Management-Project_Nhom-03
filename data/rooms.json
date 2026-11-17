@@ -64,5 +64,13 @@
     "status": "available",
     "extra_service_fee": 400000.0,
     "butler_fee": 500000.0
+  },
+  {
+    "type": "standard",
+    "room_id": "123",
+    "room_number": "1334",
+    "price_per_night": 150000.0,
+    "status": "available",
+    "basic_service": "có"
   }
 ]
