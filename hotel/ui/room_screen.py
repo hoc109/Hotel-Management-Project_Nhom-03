@@ -7,10 +7,10 @@ from hotel.models.enums import Permission, RoomStatus
 from hotel.models.room import DeluxeRoom, RoomFactory, StandardRoom, SuiteRoom
 from hotel.ui.base_screen import BaseScreen
 from hotel.ui.menu import MenuItem
-from hotel.ui.views import show_rooms
-from hotel.utils.exceptions import ValidationError
-from hotel.utils.formatter import (format_money, print_info, print_success, print_table,
-                                   print_warning)
+from hotel.ui.views import ROOM_HEADERS, show_rooms
+from hotel.utils.exceptions import BusinessRuleError, ValidationError
+from hotel.utils.formatter import (format_date, format_money, print_info, print_success,
+                                   print_table, print_warning)
 from hotel.utils.input_helper import (ask, ask_choice, ask_date, ask_float, ask_int,
                                       ask_sort_order, confirm)
 from hotel.utils.validators import (validate_id, validate_non_negative_money,
@@ -152,7 +152,8 @@ class RoomScreen(BaseScreen):
         rooms = self._hotel.rooms
         choice = ask_choice("Tìm theo", {
             "1": "Mã phòng (chính xác)", "2": "Loại phòng", "3": "Khoảng giá",
-            "4": "Trạng thái", "5": "Số phòng (gần đúng)"})
+            "4": "Trạng thái", "5": "Số phòng (gần đúng)",
+            "6": "Kết hợp nhiều tiêu chí cùng lúc"})
         if choice == "1":
             room_id = ask("Nhập mã phòng")
             room = rooms.find(room_id)
@@ -178,11 +179,35 @@ class RoomScreen(BaseScreen):
             show_rooms(rooms.sort_rooms("number", rooms=rooms.search_by_status(status)),
                        title=f"Phòng có trạng thái '{status.label}'",
                        empty="Không có phòng ở trạng thái này.")
-        else:
+        elif choice == "5":
             keyword = ask("Nhập một phần số phòng")
             show_rooms(rooms.sort_rooms("number", rooms=rooms.search_by_number(keyword)),
                        title=f"Phòng có số chứa '{keyword}'",
                        empty="Không tìm thấy phòng phù hợp.")
+        else:
+            self._search_combined()
+
+    def _search_combined(self) -> None:
+        """Tìm kết hợp nhiều tiêu chí: nhấn Enter để bỏ qua tiêu chí không dùng."""
+        rooms = self._hotel.rooms
+        print_info("Kết hợp nhiều tiêu chí – nhấn Enter để bỏ qua tiêu chí không dùng.")
+        type_choice = ask_choice("Loại phòng", {"0": "Tất cả", **ROOM_TYPE_MENU}, default="0")
+        room_type = None if type_choice == "0" else ROOM_TYPE_OPTIONS[type_choice]
+
+        def ask_price(prompt: str):
+            value = ask(prompt, required=False,
+                        validator=lambda raw: validate_non_negative_money(raw, "Giá"))
+            return None if value == "" else value
+        low = ask_price("Giá thấp nhất (Enter = bỏ qua)")
+        high = ask_price("Giá cao nhất (Enter = bỏ qua)")
+        status_options = {"0": "Tất cả", **{str(i): s.label for i, s in enumerate(RoomStatus, start=1)}}
+        status_choice = ask_choice("Trạng thái", status_options, default="0")
+        status = None if status_choice == "0" else list(RoomStatus)[int(status_choice) - 1]
+        keyword = ask("Số phòng chứa (Enter = bỏ qua)", required=False)
+        found = rooms.search(room_type=room_type, min_price=low, max_price=high, status=status,
+                             number_keyword=keyword or None)
+        show_rooms(rooms.sort_rooms("number", rooms=found), title="Kết quả tìm kết hợp",
+                   empty="Không có phòng nào thỏa các tiêu chí đã chọn.")
 
     # ----------------------------------------------------------- 6. Sắp xếp
     def sort_rooms(self) -> None:
@@ -201,11 +226,16 @@ class RoomScreen(BaseScreen):
         today = self._hotel.today()
         check_in = ask_date("Ngày nhận phòng", default=today)
         check_out = ask_date("Ngày trả phòng", default=check_in + timedelta(days=1))
+        if check_in < today:  # giống màn Tạo đặt phòng: không tra cứu ngày nhận ở quá khứ
+            raise BusinessRuleError(
+                f"Ngày nhận phòng ({format_date(check_in)}) không được ở quá khứ.")
         rooms = self._hotel.bookings.available_rooms(check_in, check_out)
         nights = Booking.count_nights(check_in, check_out)
-        show_rooms(self._hotel.rooms.sort_rooms("number", rooms=rooms),
-                   title=f"Phòng có thể đặt ({nights} đêm)",
-                   empty="Không còn phòng trống trong khoảng thời gian này.")
+        ordered = self._hotel.rooms.sort_rooms("number", rooms=rooms)
+        rows = [room.to_row() + [format_money(room.calculate_cost(nights))] for room in ordered]
+        print_table(ROOM_HEADERS + [f"Tạm tính {nights} đêm"], rows,
+                    title=f"Phòng có thể đặt ({nights} đêm) – tạm tính chưa gồm giảm giá và dịch vụ",
+                    empty_message="Không còn phòng trống trong khoảng thời gian này.")
 
     # -------------------------------------------------------- 8. Đa hình
     def polymorphism_demo(self) -> None:

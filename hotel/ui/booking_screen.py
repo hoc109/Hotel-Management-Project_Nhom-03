@@ -74,9 +74,15 @@ class BookingScreen(BaseScreen):
         free_ids = {r.room_id for r in free}
 
         def condition(room) -> str | None:
-            if room.room_id not in free_ids:
-                return f"Phòng {room.room_number} không trống trong thời gian này hoặc đang bảo trì."
-            return None
+            if room.room_id in free_ids:
+                return None
+            if not room.is_bookable():
+                return f"Phòng {room.room_number} đang bảo trì, không thể đặt."
+            # Phòng đã có người đặt: nói rõ trùng với đơn nào, vào những ngày nào
+            clashes = bookings.conflicts(room.room_id, check_in, check_out, exclude)
+            detail = "; ".join(f"{b.booking_id} ({format_date(b.check_in)} → "
+                               f"{format_date(b.check_out)})" for b in clashes)
+            return f"Phòng {room.room_number} bị TRÙNG LỊCH với đơn {detail}."
         if default and default in free_ids:
             return ask("Mã phòng", default=self._hotel.rooms.get(default),
                        show_default=default,
